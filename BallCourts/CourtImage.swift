@@ -22,7 +22,7 @@ class CourtImage {
     
     init(snapshot: FDataSnapshot){
         self.description = snapshot.value["description"] as! String
-        self.image = snapshot.value["base64String"] as! UIImage
+        self.image = Util.util.decodeToUIImage(snapshot.value["base64String"] as! String)
     }
     
     

@@ -15,10 +15,10 @@ class Util {
  
     func decodeToUIImage(base64String: String) -> UIImage {
         
-        let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions())
-        let decodedImage = UIImage(data: decodedData!)!
+        let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions(rawValue: 0))
+        let decodedImage = UIImage(data: decodedData!)
         
-        return decodedImage
+        return decodedImage!
     }
     
     func encodeToBase64String(fileName: String) -> String {

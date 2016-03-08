@@ -58,10 +58,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if myTableCell == nil {
             myTableCell = CourtTableViewCell(style: .Subtitle, reuseIdentifier: "cell")
         }
-
+        // update code set the cell with the court object. use observed property
         myTableCell?.courtName?.text = courts[indexPath.row].name
         myTableCell?.distance.text = "999 KM"
         myTableCell?.information.text = "BLAH・BLAH・BLAH"
+        
+        //******* Having issue with showing the image. May need to redefine property at are optional ****
+        //myTableCell?.imageView?.image = courts[indexPath.row].image![0].image
         
         return myTableCell!
     }

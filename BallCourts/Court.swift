@@ -37,14 +37,16 @@ class Court: CustomStringConvertible {
         self.address = snapshot.value["address"] as? String
       
         /*TRYING TO GET KEY IMAGES */
-        
-        //if let snapshotImage = snapshot.value.childSnapshotForPath("images") as? FDataSnapshot {
-        //    print(snapshotImage)
-//            for image in snapshotImage.children as? [FDataSnapshot] {
-//                image.value
-//            }
-//            
-        //}
+      
+        for imageSnapshot in snapshot.childSnapshotForPath("images").children {
+
+            //let imageObject = imageSnapshot as! FDataSnapshot
+            //print(imageObject.value["name"] as? String)
+            //print(imageObject.value["description"] as? String)
+            //print(imageObject.value["base64String"] as? String)
+
+            self.image?.append(CourtImage(snapshot: imageSnapshot as! FDataSnapshot))
+        }
         
     }
     
