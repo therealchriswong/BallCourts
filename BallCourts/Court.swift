@@ -13,7 +13,7 @@ class Court: CustomStringConvertible {
     var name: String?
     var address: String?
     var key: String
-    var image: [CourtImage]?
+    var courtImages = [CourtImage]()
     var numberOfPlayers: Int?
     
     var description: String {
@@ -45,7 +45,7 @@ class Court: CustomStringConvertible {
             //print(imageObject.value["description"] as? String)
             //print(imageObject.value["base64String"] as? String)
 
-            self.image?.append(CourtImage(snapshot: imageSnapshot as! FDataSnapshot))
+            self.courtImages.append(CourtImage(snapshot: imageSnapshot as! FDataSnapshot))
         }
         
     }

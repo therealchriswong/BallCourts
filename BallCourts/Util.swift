@@ -13,20 +13,24 @@ class Util {
     
     static let util = Util()
  
-    func decodeToUIImage(base64String: String) -> UIImage {
-        
-        let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions(rawValue: 0))
-        let decodedImage = UIImage(data: decodedData!)
-        
-        return decodedImage!
+    func decodeToUIImage(let base64String: String) -> UIImage {
+        let decodedData = NSData(base64EncodedString: base64String, options:NSDataBase64DecodingOptions(rawValue: 0))
+        if let convertedData = decodedData {
+            let decodedImage = UIImage(data: convertedData)
+            return decodedImage!
+        }
+        return UIImage()
     }
     
     func encodeToBase64String(fileName: String) -> String {
+        if let uploadImage = UIImage(named: fileName) {
+            if let imageData = UIImageJPEGRepresentation(uploadImage, 1.0){
+                let base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+                
+                return base64String
+            }
+        }
+        return ""
         
-        let uploadImage = UIImage(named: fileName)
-        let imageData = UIImageJPEGRepresentation(uploadImage!, 1.0)!
-        let base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-
-        return base64String
     }
 }
