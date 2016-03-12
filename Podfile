@@ -3,6 +3,7 @@
 # Uncomment this line if you're using Swift
  use_frameworks!
  pod 'Firebase', '>= 2.5.0'
+ pod 'GeoFire', '>= 1.1'
  target 'BallCourts' do
 
  end
