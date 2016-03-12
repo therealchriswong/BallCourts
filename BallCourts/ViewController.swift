@@ -48,28 +48,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var myTableCell = tableView.dequeueReusableCellWithIdentifier("cell") as? CourtTableViewCell
+        let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
         
-        if myTableCell == nil {
-            myTableCell = CourtTableViewCell(style: .Subtitle, reuseIdentifier: "cell")
-        }
-        myTableCell?.courtName?.text = courts[indexPath.row].name
-        myTableCell?.distance.text = "999 KM"
-        myTableCell?.information.text = courts[indexPath.row].courtImages[0].description
+        myTableCell.court = courts[indexPath.row]
         
-        let courtImages = courts[indexPath.row].courtImages[0]
-        //******* Having issue with showing the image. May need to redefine property at are optional ****
-        
-        myTableCell?.courtImage?.image = courtImages.image
-
-        
-        return myTableCell!
+        return myTableCell
     }
-    func 
-
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        //<#code#>
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // Sender is the courtTableViewCell
+        if let cell = sender as? CourtTableViewCell {
+            if let indexPath = tableView.indexPathForCell(cell) {
+                let courtData = courts[indexPath.row]
+                let courtDetailViewController = segue.destinationViewController as! CourtDetailViewController
+                courtDetailViewController.court = courtData
+            }
+        }
+    }
+
 }
 

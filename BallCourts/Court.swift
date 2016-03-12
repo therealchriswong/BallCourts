@@ -15,6 +15,8 @@ class Court: CustomStringConvertible {
     var key: String
     var courtImages = [CourtImage]()
     var numberOfPlayers: Int?
+    var distance: Int?
+    var rating: Double?
     
     var description: String {
         get {
