@@ -84,10 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-BallCourts/Firebase.framework"
-  install_framework "Pods-BallCourts/GeoFire.framework"
+  install_framework "Pods-BallCourts/Bolts.framework"
+  install_framework "Pods-BallCourts/Parse.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-BallCourts/Firebase.framework"
-  install_framework "Pods-BallCourts/GeoFire.framework"
+  install_framework "Pods-BallCourts/Bolts.framework"
+  install_framework "Pods-BallCourts/Parse.framework"
 fi

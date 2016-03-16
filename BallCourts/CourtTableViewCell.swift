@@ -21,14 +21,14 @@ class CourtTableViewCell: UITableViewCell {
                 
                 self.courtName.text = court.name
                 self.distance.text = "\(court.distance) KM"
-                self.information.text = "99\(court.numberOfPlayers) Players • ✭✭✭\(court.rating)"
+                self.information.text = "\(court.numberOfPlayers) Players • \(court.rating) Rating"
                 
-                //if let image = court.courtImages[0].image {
-                    courtImage.image = court.courtImages[0].image
-                //}
-                //else {
-                    //courtImage.image = nil
-                //}
+                if let courtImage = court.courtImages.first {
+                    self.courtImage.image = courtImage.image
+                }
+                else {
+                    self.courtImage.image = nil
+                }
             }
             else {
                 self.courtImage = nil

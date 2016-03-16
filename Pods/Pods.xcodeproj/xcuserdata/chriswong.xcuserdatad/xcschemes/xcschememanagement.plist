@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Firebase.xcscheme</key>
+		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>GeoFire.xcscheme</key>
+		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>41CE0E548650F701461EAB35CAFC17B9</key>
+		<key>2AE11F98F66425B90FA29F43B37D2DA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>806E98BF44AE24506D0BB5319883FE0A</key>
+		<key>98F4912D748E09626D1B314043FB9EB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7AC9326D819482593FE118E915409D7</key>
+		<key>B0214E86E9E229E292863BC821997C4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA679849DBF59EF8A42315276EB9BDEA</key>
+		<key>BCA053B6430690326435042FEB61B458</key>
 		<dict>
 			<key>primary</key>
 			<true/>

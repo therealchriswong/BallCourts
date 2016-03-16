@@ -7,35 +7,36 @@
 //
 
 import UIKit
-import Firebase
+import CoreLocation
+import Parse
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate  {
     
     @IBOutlet var tableView: UITableView!
     
     var courts = [Court]()
     
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //DataService.dataService.getCourts()
         
-        //self.tableView.reloadData()
+        // Find the current user location
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         
-        DataService.dataService.courtRef.observeEventType(.Value, withBlock: { snapshot -> Void in
-            //code
-            var courts = [Court]()
-            
-            for item in snapshot.children {
-                let court = Court(snapshot: item as! FDataSnapshot)
-                
-                courts.append(court)
-            }
-            
-            self.courts = courts
-            self.tableView.reloadData()
-        })
+        let testObject = PFObject(className: "TestObject")
+        
+        testObject["foo"] = "bar"
+        
+        testObject.saveInBackgroundWithBlock { (success, error) -> Void in
+            print("Object has been saved!")
+        }
         
     }
     
@@ -61,10 +62,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = sender as? CourtTableViewCell {
             if let indexPath = tableView.indexPathForCell(cell) {
                 let courtData = courts[indexPath.row]
-                let courtDetailViewController = segue.destinationViewController as! CourtDetailViewController
-                courtDetailViewController.court = courtData
+                let courtDetailTableViewController = segue.destinationViewController as! CourtDetailsTableViewController
+                courtDetailTableViewController.court = courtData
             }
         }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Found user location: \(location)")
+            
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+        
+        let alert = UIAlertController(title: "Failed to find user's location", message: error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }

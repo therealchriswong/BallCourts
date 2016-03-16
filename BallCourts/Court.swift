@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Firebase
 
 class Court: CustomStringConvertible {
     var name: String?
@@ -17,6 +16,8 @@ class Court: CustomStringConvertible {
     var numberOfPlayers: Int?
     var distance: Int?
     var rating: Double?
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     
     var description: String {
         get {
@@ -32,24 +33,4 @@ class Court: CustomStringConvertible {
         self.numberOfPlayers = numberOfPlayers
         //self.image.append(image)
     }
-    
-    init(snapshot: FDataSnapshot){
-        self.key = snapshot.key
-        self.name = snapshot.value["name"] as? String
-        self.address = snapshot.value["address"] as? String
-      
-        /*TRYING TO GET KEY IMAGES */
-      
-        for imageSnapshot in snapshot.childSnapshotForPath("images").children {
-
-            //let imageObject = imageSnapshot as! FDataSnapshot
-            //print(imageObject.value["name"] as? String)
-            //print(imageObject.value["description"] as? String)
-            //print(imageObject.value["base64String"] as? String)
-
-            self.courtImages.append(CourtImage(snapshot: imageSnapshot as! FDataSnapshot))
-        }
-        
-    }
-    
 }
