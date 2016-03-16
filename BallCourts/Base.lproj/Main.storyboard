@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Courts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BallCourts" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                             <constraint firstAttribute="trailing" secondItem="63h-ef-pdo" secondAttribute="trailing" id="zW7-bd-fHf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9MR-IQ-7QF"/>
+                    <navigationItem key="navigationItem" title="Courts" id="9MR-IQ-7QF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="b1k-ja-aYK" id="xzu-9U-jK2"/>

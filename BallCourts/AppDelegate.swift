@@ -28,9 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         
         let configuration = ParseClientConfiguration {
-            $0.applicationId = "ballcourts123456789"
-            $0.clientKey = "A'ymdSJM2)cH5b;@"
-            $0.server = "https://ballcourts.herokuapp.com/parse"
+            $0.applicationId = "zDpUeS2dTt8CA1KkQLmzhex63nYOkTfPnzuP37dg"
+            $0.clientKey = "zFPJ7tdlAICbVP8tV6TlOpTdydk5PAJLH9hLtcpF"
+            //$0.server = "https://ballcourts.herokuapp.com/parse"
+            
         }
         Parse.initializeWithConfiguration(configuration)
         

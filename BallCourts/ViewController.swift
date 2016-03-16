@@ -28,22 +28,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
         
-        let testObject = PFObject(className: "TestObject")
-        
-        testObject["foo"] = "bar"
-        
-        testObject.saveInBackgroundWithBlock { (success, error) -> Void in
-            print("Object has been saved!")
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.requestLocation()
+            print(locationManager.location)
+            getCourtByLocation(locationManager.location!)
+            
         }
-        
+
+
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return courts.count
     }
@@ -51,7 +50,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
         
+        myTableCell.currentLocation = PFGeoPoint(location: locationManager.location)
         myTableCell.court = courts[indexPath.row]
+
         
         return myTableCell
     }
@@ -87,5 +88,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    func getCourtByLocation(location: CLLocation) {
+        
+        let query = PFQuery(className: "Court")
+        
+        query.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: 10 )
+        
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                print("Sucessfully retrieved \(objects!.count) courts")
+                
+                if let objects = objects {
+
+                    for court in objects {
+                        self.courts.append(Court(court: court))
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            else {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
 }
 
