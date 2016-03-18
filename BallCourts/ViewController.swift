@@ -32,7 +32,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if CLLocationManager.locationServicesEnabled(){
             locationManager.requestLocation()
             print(locationManager.location)
-            getCourtByLocation(locationManager.location!)
+            if let location = locationManager.location {
+                getCourtByLocation(locationManager.location!)
+
+            }
             
         }
 
@@ -63,8 +66,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = sender as? CourtTableViewCell {
             if let indexPath = tableView.indexPathForCell(cell) {
                 let courtData = courts[indexPath.row]
-                let courtDetailTableViewController = segue.destinationViewController as! CourtDetailsTableViewController
-                courtDetailTableViewController.court = courtData
+                let courtInfoViewController = segue.destinationViewController as! CourtInfoViewController
+                courtInfoViewController.currentLocation = PFGeoPoint(location: locationManager.location)
+                courtInfoViewController.court = courtData
             }
         }
     }
@@ -109,6 +113,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             else {
                 print("Error: \(error)")
             }
+        }
+    }
+    
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+            // load the table
+            
+        } else {
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     

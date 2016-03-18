@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422225041C9C64ED007AB661 /* CourtInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422225031C9C64ED007AB661 /* CourtInfoViewController.swift */; };
 		423282281C947DB10045F670 /* CourtDetailsImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */; };
 		426945A61C98620E00725E86 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426945A51C98620E00725E86 /* CoreLocation.framework */; };
 		42B1EDF51C973B0900745CEC /* CourtDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B1EDF41C973B0900745CEC /* CourtDetailsTableViewController.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		06AD11E42B16E4E47732C817 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		422225031C9C64ED007AB661 /* CourtInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtInfoViewController.swift; sourceTree = "<group>"; };
 		423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtDetailsImageTableViewCell.swift; sourceTree = "<group>"; };
 		426945A51C98620E00725E86 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		42B1EDF41C973B0900745CEC /* CourtDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtDetailsTableViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				42C3D76D1C8514EE00902BB7 /* ViewController.swift */,
 				42B1EDF41C973B0900745CEC /* CourtDetailsTableViewController.swift */,
+				422225031C9C64ED007AB661 /* CourtInfoViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B3D48B1C8B47AE00ED7B71 /* Constants.swift in Sources */,
+				422225041C9C64ED007AB661 /* CourtInfoViewController.swift in Sources */,
 				42C3D76E1C8514EE00902BB7 /* ViewController.swift in Sources */,
 				42C3D76C1C8514EE00902BB7 /* AppDelegate.swift in Sources */,
 				42B3D49A1C8BDC0000ED7B71 /* CourtTableViewCell.swift in Sources */,
