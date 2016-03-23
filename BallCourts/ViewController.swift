@@ -11,7 +11,7 @@ import CoreLocation
 import Parse
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate  {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating  {
     
     @IBOutlet var tableView: UITableView!
     
@@ -19,27 +19,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var locationManager = CLLocationManager()
     
+    var searchController: UISearchController!
+    
+    var searchResults = [Court]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        // Find the current user location
+        // Set the delegate
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.requestLocation()
-            print(locationManager.location)
-            if let location = locationManager.location {
-                getCourtByLocation(locationManager.location!)
-
-            }
-            
-        }
-
-
+        
+        searchController = UISearchController(searchResultsController: nil)
+        tableView.tableHeaderView = searchController?.searchBar
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -47,15 +48,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courts.count
+        
+        if searchController.active {
+            return searchResults.count
+        }
+        else {
+            return courts.count
+
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
         
         myTableCell.currentLocation = PFGeoPoint(location: locationManager.location)
-        myTableCell.court = courts[indexPath.row]
+        
+        if searchController.active {
+            myTableCell.court = searchResults[indexPath.row]
+        }
+        else {
+            myTableCell.court = courts[indexPath.row]
 
+        }
         
         return myTableCell
     }
@@ -65,10 +79,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Sender is the courtTableViewCell
         if let cell = sender as? CourtTableViewCell {
             if let indexPath = tableView.indexPathForCell(cell) {
-                let courtData = courts[indexPath.row]
                 let courtInfoViewController = segue.destinationViewController as! CourtInfoViewController
+                
                 courtInfoViewController.currentLocation = PFGeoPoint(location: locationManager.location)
-                courtInfoViewController.court = courtData
+
+                if searchController.active {
+                    courtInfoViewController.court = searchResults[indexPath.row]
+                }
+                else {
+                    courtInfoViewController.court = courts[indexPath.row]
+
+
+                }
+                
             }
         }
     }
@@ -77,6 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let location = locations.first {
             print("Found user location: \(location)")
             
+            getCourtByLocation(location)
         }
     }
     
@@ -116,14 +140,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func checkLocationAuthorizationStatus() {
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-            // load the table
+    func filterContentForSearchText(searchText: String) {
+        searchResults = courts.filter({ (Court) -> Bool in
+            let nameMatch = Court.name.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch  )
             
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-        }
+            return nameMatch != nil
+        })
+        
     }
     
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContentForSearchText(searchText)
+            tableView.reloadData()
+        }
+    }
 }
 

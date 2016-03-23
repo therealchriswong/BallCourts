@@ -60,11 +60,10 @@ class CourtInfoViewController: UIViewController {
                 print("Error: \(error)")
             }
         })
-        
-        
-        let location = CLLocation(latitude: (court?.latitude)!, longitude: (court?.longitude)!)
-        
-        centerMapOnLocation(location)
+//
+//        let location = CLLocation(latitude: (court?.latitude)!, longitude: (court?.longitude)!)
+//        
+//        centerMapOnLocation(location)
 
     }
     
