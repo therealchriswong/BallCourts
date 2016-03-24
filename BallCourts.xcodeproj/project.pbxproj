@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		422225041C9C64ED007AB661 /* CourtInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422225031C9C64ED007AB661 /* CourtInfoViewController.swift */; };
+		42253D051CA4AABF00FB89B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42253D031CA4AABF00FB89B3 /* Main.storyboard */; };
 		423282281C947DB10045F670 /* CourtDetailsImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */; };
 		426945A61C98620E00725E86 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426945A51C98620E00725E86 /* CoreLocation.framework */; };
 		42B3D47E1C8947EF00ED7B71 /* scadding2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4771C8947EF00ED7B71 /* scadding2.jpg */; };
@@ -25,8 +26,7 @@
 		42B3D4971C8BD77700ED7B71 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4961C8BD77700ED7B71 /* Util.swift */; };
 		42B3D49A1C8BDC0000ED7B71 /* CourtTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4991C8BDC0000ED7B71 /* CourtTableViewCell.swift */; };
 		42C3D76C1C8514EE00902BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3D76B1C8514EE00902BB7 /* AppDelegate.swift */; };
-		42C3D76E1C8514EE00902BB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3D76D1C8514EE00902BB7 /* ViewController.swift */; };
-		42C3D7711C8514EE00902BB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C3D76F1C8514EE00902BB7 /* Main.storyboard */; };
+		42C3D76E1C8514EE00902BB7 /* ListCourtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3D76D1C8514EE00902BB7 /* ListCourtsViewController.swift */; };
 		42C3D7731C8514EE00902BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42C3D7721C8514EE00902BB7 /* Assets.xcassets */; };
 		42C3D7761C8514EE00902BB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C3D7741C8514EE00902BB7 /* LaunchScreen.storyboard */; };
 		42E4B08F1C9CDBAD00950983 /* AddCourtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E4B08E1C9CDBAD00950983 /* AddCourtViewController.swift */; };
@@ -36,6 +36,7 @@
 /* Begin PBXFileReference section */
 		06AD11E42B16E4E47732C817 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		422225031C9C64ED007AB661 /* CourtInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtInfoViewController.swift; sourceTree = "<group>"; };
+		42253D041CA4AABF00FB89B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtDetailsImageTableViewCell.swift; sourceTree = "<group>"; };
 		426945A51C98620E00725E86 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		42B3D4771C8947EF00ED7B71 /* scadding2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scadding2.jpg; path = ../../../../Desktop/scadding2.jpg; sourceTree = "<group>"; };
@@ -54,8 +55,7 @@
 		42B3D4991C8BDC0000ED7B71 /* CourtTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtTableViewCell.swift; sourceTree = "<group>"; };
 		42C3D7681C8514EE00902BB7 /* BallCourts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BallCourts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C3D76B1C8514EE00902BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		42C3D76D1C8514EE00902BB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		42C3D7701C8514EE00902BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		42C3D76D1C8514EE00902BB7 /* ListCourtsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCourtsViewController.swift; sourceTree = "<group>"; };
 		42C3D7721C8514EE00902BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42C3D7751C8514EE00902BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42C3D7771C8514EE00902BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		4232822A1C9480250045F670 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				42C3D76D1C8514EE00902BB7 /* ViewController.swift */,
+				42C3D76D1C8514EE00902BB7 /* ListCourtsViewController.swift */,
 				422225031C9C64ED007AB661 /* CourtInfoViewController.swift */,
 				42E4B08E1C9CDBAD00950983 /* AddCourtViewController.swift */,
 			);
@@ -204,8 +204,8 @@
 				42B3D4761C8947B100ED7B71 /* images */,
 				42C3D76B1C8514EE00902BB7 /* AppDelegate.swift */,
 				4232822A1C9480250045F670 /* Controllers */,
-				42C3D76F1C8514EE00902BB7 /* Main.storyboard */,
 				42C3D7721C8514EE00902BB7 /* Assets.xcassets */,
+				42253D031CA4AABF00FB89B3 /* Main.storyboard */,
 				42C3D7741C8514EE00902BB7 /* LaunchScreen.storyboard */,
 				42C3D7771C8514EE00902BB7 /* Info.plist */,
 				423282291C9480150045F670 /* Resources */,
@@ -289,7 +289,7 @@
 				42B3D4831C8947EF00ED7B71 /* up2.jpg in Resources */,
 				42C3D7731C8514EE00902BB7 /* Assets.xcassets in Resources */,
 				42B3D47E1C8947EF00ED7B71 /* scadding2.jpg in Resources */,
-				42C3D7711C8514EE00902BB7 /* Main.storyboard in Resources */,
+				42253D051CA4AABF00FB89B3 /* Main.storyboard in Resources */,
 				42B3D48F1C8B4D9A00ED7B71 /* Canada-Basketball-Header.png in Resources */,
 				42B3D47F1C8947EF00ED7B71 /* scadding1.jpg in Resources */,
 				42B3D4801C8947EF00ED7B71 /* hf1.jpg in Resources */,
@@ -355,7 +355,7 @@
 			files = (
 				42B3D48B1C8B47AE00ED7B71 /* Constants.swift in Sources */,
 				422225041C9C64ED007AB661 /* CourtInfoViewController.swift in Sources */,
-				42C3D76E1C8514EE00902BB7 /* ViewController.swift in Sources */,
+				42C3D76E1C8514EE00902BB7 /* ListCourtsViewController.swift in Sources */,
 				42C3D76C1C8514EE00902BB7 /* AppDelegate.swift in Sources */,
 				42B3D49A1C8BDC0000ED7B71 /* CourtTableViewCell.swift in Sources */,
 				42B3D4881C8B46C200ED7B71 /* DataService.swift in Sources */,
@@ -370,10 +370,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		42C3D76F1C8514EE00902BB7 /* Main.storyboard */ = {
+		42253D031CA4AABF00FB89B3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				42C3D7701C8514EE00902BB7 /* Base */,
+				42253D041CA4AABF00FB89B3 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

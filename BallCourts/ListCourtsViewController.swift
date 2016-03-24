@@ -11,7 +11,7 @@ import CoreLocation
 import Parse
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating  {
+class ListCourtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, AddCourtDelegate{
     
     @IBOutlet var tableView: UITableView!
     
@@ -155,5 +155,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             tableView.reloadData()
         }
     }
+    
+    func cancelAddCourt() {
+        //<#code#>
+    }
+    
+    func saveNewCourt(court: Court) {
+        //<#code#>
+    }
+    
 }
 

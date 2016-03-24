@@ -10,6 +10,14 @@ import UIKit
 import MapKit
 import AddressBookUI
 
+protocol AddCourtDelegate {
+    
+    func cancelAddCourt()
+    
+    func saveNewCourt(court: Court)
+    
+}
+
 class AddCourtViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var imagePicker: UIImagePickerController!
@@ -31,20 +39,48 @@ class AddCourtViewController: UIViewController, UINavigationControllerDelegate, 
         imagePicker.allowsEditing = false
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    
+    // Called when the Save button is tapped
+    @IBAction func save() {
+        // Create a new Contact
+        //let contact = Contact()
+        // Set its first and last names and email based on the text fields
+//        if let firstName = firstNameField.text {
+//            contact.firstName = firstName
+//        }
+//        if let lastName = lastNameField.text {
+//            contact.lastName = lastName
+//        }
+//        if let email = emailField.text {
+//            contact.email = email
+//        }
+        // Let the delegate know we want to save the new Contact
+        //delegate?.saveNewContact(contact)
+    }
+    
+    // Called when the Cancel button is tapped
+    @IBAction func cancel() {
+        // Let the delegate know we don't want to save a new Contact
+        //delegate?.cancelAddContact()
+    }
+    
+    // The delegate (for handling Save and Cancel)
+    var delegate: AddCourtDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        checkLocationAuthorizationStatus()
-        
-        
+        //checkLocationAuthorizationStatus()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         // dismiss the choosing image view
         self.dismissViewControllerAnimated(true, completion: nil)
