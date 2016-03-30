@@ -18,11 +18,14 @@ protocol AddCourtDelegate {
     
 }
 
-class AddCourtViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddCourtViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var imagePicker: UIImagePickerController!
     var locationManager = CLLocationManager()
 
+    // The delegate (for handling Save and Cancel)
+    var delegate: AddCourtDelegate?
+    
     @IBOutlet var name: UITextField!
     @IBOutlet var summary: UITextField!
     @IBOutlet var hours: UITextField!
@@ -31,6 +34,8 @@ class AddCourtViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet var map: MKMapView!
     
     @IBOutlet var courtImage: UIImageView!
+    
+    
     @IBAction func takePhoto(sender: AnyObject) {
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
@@ -43,37 +48,55 @@ class AddCourtViewController: UIViewController, UINavigationControllerDelegate, 
     
     // Called when the Save button is tapped
     @IBAction func save() {
-        // Create a new Contact
-        //let contact = Contact()
-        // Set its first and last names and email based on the text fields
-//        if let firstName = firstNameField.text {
-//            contact.firstName = firstName
-//        }
-//        if let lastName = lastNameField.text {
-//            contact.lastName = lastName
-//        }
-//        if let email = emailField.text {
-//            contact.email = email
-//        }
-        // Let the delegate know we want to save the new Contact
-        //delegate?.saveNewContact(contact)
+        // Create a new Court
+        
+        if let annotation = map.annotations.first {
+            
+            let options = MKMapSnapshotOptions()
+            options.region = self.map.region
+            options.size = self.map.frame.size
+            options.scale = UIScreen.mainScreen().scale
+            
+            let snapshotter = MKMapSnapshotter(options: options)
+            snapshotter.startWithCompletionHandler() { snapshot, error in
+                
+                if error != nil {
+                    print("Error: \(error?.localizedDescription)")
+                }
+                else {
+                    //let data = UIImagePNGRepresentation(snapshot!.image)
+                    
+                    let court = Court(name: self.name.text!, address: annotation.subtitle!!, summary: self.summary.text, phone: self.phone.text, url: self.url.text, hours: self.url.text, latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude, rating: 0.0, players: 0)
+                    
+                    court.image = UIImageJPEGRepresentation(self.courtImage.image!, 0.5)
+                    court.mapImage = UIImageJPEGRepresentation(snapshot!.image, 0.5)
+                    
+                    // Let the delegate know we want to save the new Contact
+                    court.saveToDatabase()
+                    self.delegate?.saveNewCourt(court)
+                    
+                }
+            }
+        }
     }
     
     // Called when the Cancel button is tapped
     @IBAction func cancel() {
         // Let the delegate know we don't want to save a new Contact
-        //delegate?.cancelAddContact()
+        delegate?.cancelAddCourt()
     }
-    
-    // The delegate (for handling Save and Cancel)
-    var delegate: AddCourtDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        //checkLocationAuthorizationStatus()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.startUpdatingLocation()
+        //self.map.showsUserLocation = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,44 +111,9 @@ class AddCourtViewController: UIViewController, UINavigationControllerDelegate, 
         courtImage.image = image
     }
     
-    func checkLocationAuthorizationStatus() {
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-            // Create map
-            
-            // Get current user location
-            let latitude:CLLocationDegrees = 43.701736
-            let longitude:CLLocationDegrees = -79.377145
-            
-            let latDelta:CLLocationDegrees = 0.05
-            
-            let longDelta:CLLocationDegrees = 0.05
-            
-            let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-            
-            let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-            
-            let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-            
-            map.setRegion(region, animated: true)
-            
-            // Handle Long Press Gesture by calliing action method
-            // * the colon after "action" send gesture information. If no colon no information will be sent to the action method.
-            let uilpgr = UILongPressGestureRecognizer(target: self, action: "action:")
-            
-            uilpgr.minimumPressDuration = 1
-            
-            map.addGestureRecognizer(uilpgr)
-
-            
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-    
     func action(gestureRecongnizer: UIGestureRecognizer){
-        print("Gesture recongnized")
         
-        // clear annotations
+        //Clear Annotations
         map.removeAnnotations(map.annotations)
         
         // the view is the map. the coordinate pressed is relative to the map not the coordinates in the map
@@ -134,56 +122,107 @@ class AddCourtViewController: UIViewController, UINavigationControllerDelegate, 
         // convert user pressed coordinate to map
         let newCoordinate:CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
         
-        // Add annotation for home
-        let annotation = MKPointAnnotation()
-        
-        annotation.coordinate = newCoordinate
-        
-        let address = reverseGeocoding(newCoordinate.latitude, longitude: newCoordinate.longitude)
-        
-        annotation.title = "New Court"
-        
-        annotation.subtitle = address
-        
-        map.addAnnotation(annotation)
-        
+        requestReverseGeocoding(newCoordinate.latitude, longitude: newCoordinate.longitude)
         
     }
     
-    func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> String {
+    func requestReverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
-        var address: String = ""
+
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
             if error != nil {
                 print(error)
             }
             else if placemarks?.count > 0 {
-                let pm = placemarks![0]
+                let placeMark = placemarks![0]
                 
-                address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
+                let name = placeMark.addressDictionary?["Name"]
+                
+                // Add annotation
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                annotation.title = name as? String
+                annotation.subtitle = self.displayLocationInfo(placeMark)
+                
+                self.map.addAnnotation(annotation)
+                
+                // center map on annotation
+                self.map.setCenterCoordinate(annotation.coordinate, animated: true)
             }
         })
-        
-        return address
     }
     
-    func createMapSnapshot() -> NSData {
-        let options = MKMapSnapshotOptions()
-        options.region = self.map.region
-        options.size = self.map.frame.size
-        options.scale = UIScreen.mainScreen().scale
+//    func createMapSnapshot() {
+//        let options = MKMapSnapshotOptions()
+//        options.region = self.map.region
+//        options.size = self.map.frame.size
+//        options.scale = UIScreen.mainScreen().scale
+//        
+//        let snapshotter = MKMapSnapshotter(options: options)
+//        snapshotter.startWithCompletionHandler() { snapshot, error in
+//            
+//            if error != nil {
+//                print("Error: \(error?.localizedDescription)")
+//            }
+//            else {
+//                let data = UIImagePNGRepresentation(snapshot!.image)
+//            }
+//        }
+//    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locations = locations.last
+        let center = CLLocationCoordinate2D(latitude: locations!.coordinate.latitude, longitude: locations!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         
-        var data: NSData?
+        self.map.setRegion(region, animated: true)
         
-        let snapshotter = MKMapSnapshotter(options: options)
-        snapshotter.startWithCompletionHandler() { snapshot, error in
-            
-            let image = snapshot!.image
-            data = UIImagePNGRepresentation(image)!
+        self.locationManager.stopUpdatingLocation()
+        
+        // Add Gesture
+        // Handle Long Press Gesture by calling action method
+        // * the colon after "action" send gesture information. If no colon no information will be sent to the action method.
+        let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
+        longPress.minimumPressDuration = 1.0
+        map.addGestureRecognizer(longPress)
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Errors: \(error.localizedDescription)")
+    }
+    
+    func displayLocationInfo(placeMark: CLPlacemark) -> String {
+        
+        var address: String = ""
+        
+        // Street
+        if let street = placeMark.addressDictionary?["Street"] as? NSString
+        {
+            address += street as String + ", "
+        }
+        // City
+        if let city = placeMark.addressDictionary?["City"] as? NSString
+        {
+            address += city as String + ", "
+        }
+        // State (Province)
+        if let state = placeMark.addressDictionary?["State"] as? NSString
+        {
+            address += state as String + ", "
+        }
+        // ZIP (Postal Code)
+        if let zip = placeMark.addressDictionary?["ZIP"] as? NSString
+        {
+            address += zip as String + ", "
+        }
+        // Country
+        if let country = placeMark.addressDictionary?["Country"] as? NSString
+        {
+            address += country as String
         }
         
-        return data!
-        
+        return address
     }
 
 }

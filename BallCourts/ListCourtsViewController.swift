@@ -25,23 +25,29 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        
-        // Set the delegate
+        setupLocationManager()
+        setupSearchBar()
+    }
+    
+    // MARK: Setup Helper Methods
+    
+    func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        
-        
+        locationManager.startUpdatingLocation()
+    }
+    
+    func setupSearchBar() {
         searchController = UISearchController(searchResultsController: nil)
         tableView.tableHeaderView = searchController?.searchBar
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        
     }
+    
+    // MARK: UITableViewDelegate Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -76,6 +82,11 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if let addCourtViewController = segue.destinationViewController as? AddCourtViewController {
+            // Tell the AddCourtViewController we will handle Cancel and Save
+            addCourtViewController.delegate = self
+        }
+        
         // Sender is the courtTableViewCell
         if let cell = sender as? CourtTableViewCell {
             if let indexPath = tableView.indexPathForCell(cell) {
@@ -91,15 +102,16 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
 
 
                 }
-                
             }
         }
     }
     
+    // MARK: LocationManagerDelegate Methods
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if let location = locations.last {
             print("Found user location: \(location)")
-            
+            locationManager.stopUpdatingLocation()
             getCourtByLocation(location)
         }
     }
@@ -115,7 +127,10 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
 
+    // MARK: Private Helpers
+    
     func getCourtByLocation(location: CLLocation) {
         
         let query = PFQuery(className: "Court")
@@ -127,8 +142,9 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
                 print("Sucessfully retrieved \(objects!.count) courts")
                 
                 if let objects = objects {
-
+                    self.courts = [Court]()
                     for court in objects {
+                        // TODO: don't append
                         self.courts.append(Court(court: court))
                     }
                     self.tableView.reloadData()
@@ -156,12 +172,34 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    // MARK: AddCourtDelegate
+    
     func cancelAddCourt() {
-        //<#code#>
+        navigationController?.popViewControllerAnimated(true)
+
     }
     
     func saveNewCourt(court: Court) {
-        //<#code#>
+        navigationController?.popViewControllerAnimated(true)
+        
+        getCourtByLocation(locationManager.location!)
+        if let courtIndex = courts.indexOf({$0 === court}) {
+            //tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: courtIndex, inSection: 0),
+            //    atScrollPosition: UITableViewScrollPosition.Middle,
+            //    animated: true)
+            
+            let indexPath = NSIndexPath(forRow: courtIndex, inSection: 0)
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+
+            
+        }
+        
+        // Animate the row appearing at the correct place
+//        if let row = courts.indexOf(court) {
+//            let indexPath = NSIndexPath(forRow: row, inSection: 0)
+//            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//        }
+
     }
     
 }
