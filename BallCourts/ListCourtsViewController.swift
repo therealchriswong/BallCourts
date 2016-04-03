@@ -67,6 +67,10 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
         
+        //TODO Put a border around the content view
+        //myTableCell.contentView.layer.borderWidth = 0.5
+        //myTableCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
+        
         myTableCell.currentLocation = PFGeoPoint(location: locationManager.location)
         
         if searchController.active {

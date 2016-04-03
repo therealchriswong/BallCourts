@@ -12,29 +12,29 @@ import MapKit
 
 class CourtInfoViewController: UIViewController {
 
-    @IBOutlet var courtImage: UIImageView!
-    @IBOutlet var courtTitle: UILabel!
-    @IBOutlet var courtInformation: UILabel!
-    @IBOutlet var summary: UILabel!
-    @IBOutlet var address: UILabel!
-    @IBOutlet var hours: UILabel!
-    @IBOutlet var phone: UILabel!
-    @IBOutlet var url: UILabel!
-    @IBOutlet var map: MKMapView!
+    //@IBOutlet var courtImage: UIImageView!
+//    @IBOutlet var courtTitle: UILabel!
+//    @IBOutlet var courtInformation: UILabel!
+//    @IBOutlet var summary: UILabel!
+//    @IBOutlet var address: UILabel!
+//    @IBOutlet var hours: UILabel!
+//    @IBOutlet var phone: UILabel!
+//    @IBOutlet var url: UILabel!
+//    @IBOutlet var map: MKMapView!
     
     var currentLocation: PFGeoPoint?
     var court: Court?
     
     override func viewDidLoad() {
         
-        self.courtTitle.text = court?.name
-        self.courtInformation.text = "\(court!.players) Players • \(court!.rating!) Rating • \( String(format: "%.2f", (currentLocation?.distanceInKilometersTo(PFGeoPoint(latitude: court!.latitude, longitude: court!.longitude)))!)) KM"
+        //self.courtTitle.text = court?.name
+        //self.courtInformation.text = "\(court!.players) Players • \(court!.rating!) Rating • \( String(format: "%.2f", (currentLocation?.distanceInKilometersTo(PFGeoPoint(latitude: court!.latitude, longitude: court!.longitude)))!)) KM"
         
-        self.summary.text = court?.summary
-        self.address.text = court?.address
-        self.hours.text = court?.hours
-        self.phone.text = court?.phone
-        self.url.text = court?.url
+//        self.summary.text = court?.summary
+//        self.address.text = court?.address
+//        self.hours.text = court?.hours
+//        self.phone.text = court?.phone
+//        self.url.text = court?.url
         
         let query = PFQuery(className: "Court")
         query.whereKey("objectId", equalTo: court!.id)
@@ -48,7 +48,7 @@ class CourtInfoViewController: UIViewController {
                         if let imageData = imageData {
                             let image = UIImage(data: imageData)
                             
-                            self.courtImage.image = image
+                            //self.courtImage.image = image
                         }
                     }
                     else {
@@ -74,14 +74,14 @@ class CourtInfoViewController: UIViewController {
         let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
         let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        map.setRegion(region, animated: true)
+        //map.setRegion(region, animated: true)
 
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = self.court?.name
         annotation.subtitle = self.court?.address
-        map.addAnnotation(annotation)
+        //map.addAnnotation(annotation)
         
 
     }
