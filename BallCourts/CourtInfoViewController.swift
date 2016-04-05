@@ -12,29 +12,31 @@ import MapKit
 
 class CourtInfoViewController: UIViewController {
 
-    //@IBOutlet var courtImage: UIImageView!
-//    @IBOutlet var courtTitle: UILabel!
-//    @IBOutlet var courtInformation: UILabel!
-//    @IBOutlet var summary: UILabel!
-//    @IBOutlet var address: UILabel!
-//    @IBOutlet var hours: UILabel!
-//    @IBOutlet var phone: UILabel!
-//    @IBOutlet var url: UILabel!
-//    @IBOutlet var map: MKMapView!
+    @IBOutlet var courtImage: UIImageView!
+    @IBOutlet var courtTitle: UILabel!
+    @IBOutlet var courtInformation: UILabel!
+    @IBOutlet var summary: UITextView!
+    @IBOutlet var address: UILabel!
+    @IBOutlet var hours: UILabel!
+    @IBOutlet var phone: UILabel!
+    @IBOutlet var url: UILabel!
+    @IBOutlet var map: UIImageView!
     
     var currentLocation: PFGeoPoint?
     var court: Court?
     
     override func viewDidLoad() {
         
-        //self.courtTitle.text = court?.name
-        //self.courtInformation.text = "\(court!.players) Players • \(court!.rating!) Rating • \( String(format: "%.2f", (currentLocation?.distanceInKilometersTo(PFGeoPoint(latitude: court!.latitude, longitude: court!.longitude)))!)) KM"
+        self.courtImage.tintColor = UIColor.blackColor()
         
-//        self.summary.text = court?.summary
-//        self.address.text = court?.address
-//        self.hours.text = court?.hours
-//        self.phone.text = court?.phone
-//        self.url.text = court?.url
+        self.courtTitle.text = court?.name
+        self.courtInformation.text = "\(court!.players) Players • \(court!.rating!) Rating • \( String(format: "%.2f", (currentLocation?.distanceInKilometersTo(PFGeoPoint(latitude: court!.latitude, longitude: court!.longitude)))!)) KM"
+        
+        self.summary.text = court?.summary
+        self.address.text = court?.address
+        self.hours.text = court?.hours
+        self.phone.text = court?.phone
+        self.url.text = court?.url
         
         let query = PFQuery(className: "Court")
         query.whereKey("objectId", equalTo: court!.id)
@@ -48,13 +50,30 @@ class CourtInfoViewController: UIViewController {
                         if let imageData = imageData {
                             let image = UIImage(data: imageData)
                             
-                            //self.courtImage.image = image
+                            self.courtImage.image = image
                         }
                     }
                     else {
-                        print("Error downloading Image: \(error)")
+                        print("Error downloading court image: \(error)")
                     }
                 }
+                
+                let mapImageFile = object!["mapImage"] as! PFFile
+                
+                mapImageFile.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                    if error == nil {
+                        if let imageData = imageData {
+                            let image = UIImage(data: imageData)
+                            
+                            self.map.image = image
+                        }
+                    }
+                    else {
+                        print("Error downloading map image: \(error)")
+                    }
+                }
+
+                
             }
             else {
                 print("Error: \(error)")
