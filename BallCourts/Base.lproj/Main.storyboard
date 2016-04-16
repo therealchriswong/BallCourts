@@ -368,7 +368,7 @@
                                                         <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;courtInformation&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rht-PT-wtB">
-                                                        <rect key="frame" x="112.5" y="58.5" width="149.5" height="20.5"/>
+                                                        <rect key="frame" x="112" y="58" width="149.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -396,31 +396,32 @@
                                                 <rect key="frame" x="5" y="140" width="365" height="320"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rJ3-Ur-nAi" userLabel="Description Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="35"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="pvp-Eg-yj0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvp-Eg-yj0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="365" height="35"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="qri-cZ-Ioi"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="qri-cZ-Ioi"/>
                                                                 </constraints>
                                                                 <string key="text">&lt;Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim &gt;veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.&gt;</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                             </textView>
                                                         </subviews>
+                                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jmX-ge-aoe" userLabel="Address Stack View">
-                                                        <rect key="frame" x="0.0" y="55" width="365" height="24"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="M2k-su-iK1" userLabel="Location Stack View">
+                                                        <rect key="frame" x="0.0" y="40" width="365" height="24"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="wVb-ka-31Q">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="emR-Cy-4GM">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="24" id="O6X-6Y-17y"/>
-                                                                    <constraint firstAttribute="height" constant="24" id="Skd-Kw-lmW"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="nV6-Z5-rdB"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="op6-90-1cB"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;addressLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81n-YE-e6R">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="&lt;hoursLabel&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLn-dL-shT">
                                                                 <rect key="frame" x="29" y="0.0" width="336" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -428,17 +429,17 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="M2k-su-iK1" userLabel="Hours Stack View">
-                                                        <rect key="frame" x="0.0" y="84" width="365" height="24"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="phM-6k-LcO" userLabel="Hours Stack View">
+                                                        <rect key="frame" x="0.0" y="69" width="365" height="24"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hours" translatesAutoresizingMaskIntoConstraints="NO" id="emR-Cy-4GM">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hours" translatesAutoresizingMaskIntoConstraints="NO" id="qxQ-4M-uyy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="24" id="03l-Su-44H"/>
-                                                                    <constraint firstAttribute="height" constant="24" id="sSP-Hl-U7L"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="DDt-yb-xZX"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="DVv-4h-feW"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;hoursLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLn-dL-shT">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="&lt;hoursLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foe-rZ-bID">
                                                                 <rect key="frame" x="29" y="0.0" width="336" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -447,16 +448,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="akg-4L-bkK" userLabel="Phone Stack View">
-                                                        <rect key="frame" x="0.0" y="113" width="365" height="24"/>
+                                                        <rect key="frame" x="0.0" y="98" width="365" height="24"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="KST-ZH-6Sa">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="24" id="JjZ-Po-p1e"/>
-                                                                    <constraint firstAttribute="width" constant="24" id="wAM-tf-iJs"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="cBw-NI-kCD"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="xab-nj-3bU"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;phoneLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6a-JY-8iK">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="&lt;phoneLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6a-JY-8iK">
                                                                 <rect key="frame" x="29" y="0.0" width="336" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -465,16 +466,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9C9-JK-Mud" userLabel="Phone Stack View">
-                                                        <rect key="frame" x="0.0" y="142" width="365" height="24"/>
+                                                        <rect key="frame" x="0.0" y="127" width="365" height="24"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="url" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-bh-EHs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="24" id="SBC-Nv-9fq"/>
-                                                                    <constraint firstAttribute="height" constant="24" id="mef-Uq-BeE"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="miK-Fr-EJt"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="v4T-m3-QIF"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;urlLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rz-Lc-p5N">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="&lt;urlLabel&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rz-Lc-p5N">
                                                                 <rect key="frame" x="29" y="0.0" width="336" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -483,7 +484,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uag-Em-DPy" userLabel="Map Image View">
-                                                        <rect key="frame" x="0.0" y="171" width="365" height="149"/>
+                                                        <rect key="frame" x="0.0" y="156" width="365" height="164"/>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -503,8 +504,8 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="yDa-Rj-pWM"/>
                                                 <exclude reference="bef-dp-WMh"/>
+                                                <exclude reference="yDa-Rj-pWM"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -530,14 +531,16 @@
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="address" destination="81n-YE-e6R" id="pPe-wV-5EM"/>
                         <outlet property="courtImage" destination="B3L-80-xQP" id="0lg-3Q-Xbb"/>
                         <outlet property="courtInformation" destination="rht-PT-wtB" id="xdU-X4-q85"/>
                         <outlet property="courtTitle" destination="JXM-fy-AXk" id="tVd-0I-Mos"/>
                         <outlet property="hours" destination="pLn-dL-shT" id="6FL-Nq-mBl"/>
+                        <outlet property="hoursIcon" destination="emR-Cy-4GM" id="TL1-5s-HfV"/>
+                        <outlet property="hoursStackView" destination="M2k-su-iK1" id="HFH-jp-6F0"/>
                         <outlet property="map" destination="uag-Em-DPy" id="aY9-4G-tIj"/>
                         <outlet property="phone" destination="L6a-JY-8iK" id="Uuk-zR-rNa"/>
                         <outlet property="summary" destination="pvp-Eg-yj0" id="QL5-J3-HO2"/>
+                        <outlet property="summaryHeightConstraint" destination="qri-cZ-Ioi" id="aok-U3-anI"/>
                         <outlet property="url" destination="9Rz-Lc-p5N" id="6va-PN-KKj"/>
                     </connections>
                 </viewController>

@@ -67,9 +67,9 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
         
-        //TODO Put a border around the content view
-        //myTableCell.contentView.layer.borderWidth = 0.5
-        //myTableCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
+       myTableCell.contentView.layer.borderWidth = 0.1
+        print("\(myTableCell.contentView.layer.borderColor)")
+        
         
         myTableCell.currentLocation = PFGeoPoint(location: locationManager.location)
         
@@ -82,6 +82,31 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         return myTableCell
+    }
+    
+        
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("start")
+        
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let cell =  self.tableView.cellForRowAtIndexPath(indexPath)
+        
+        cell?.transform = CGAffineTransformMakeScale(0.5, 0.5)
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            
+           cell?.transform = CGAffineTransformMakeScale(1, 1)
+            
+        })
+        print("completed")
+    }
+    
+    
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.cellForRowAtIndexPath(indexPath)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -188,21 +213,15 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
         
         getCourtByLocation(locationManager.location!)
         if let courtIndex = courts.indexOf({$0 === court}) {
-            //tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: courtIndex, inSection: 0),
-            //    atScrollPosition: UITableViewScrollPosition.Middle,
-            //    animated: true)
+//            tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: courtIndex, inSection: 0),
+//            atScrollPosition: UITableViewScrollPosition.Middle,
+//            animated: true)
             
             let indexPath = NSIndexPath(forRow: courtIndex, inSection: 0)
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 
             
         }
-        
-        // Animate the row appearing at the correct place
-//        if let row = courts.indexOf(court) {
-//            let indexPath = NSIndexPath(forRow: row, inSection: 0)
-//            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-//        }
 
     }
     

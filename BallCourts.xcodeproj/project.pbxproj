@@ -11,6 +11,7 @@
 		422225041C9C64ED007AB661 /* CourtInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422225031C9C64ED007AB661 /* CourtInfoViewController.swift */; };
 		423282281C947DB10045F670 /* CourtDetailsImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */; };
 		426945A61C98620E00725E86 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426945A51C98620E00725E86 /* CoreLocation.framework */; };
+		428B17091CC2C76800290191 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B17081CC2C76800290191 /* LocationService.swift */; };
 		42B3D47E1C8947EF00ED7B71 /* scadding2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4771C8947EF00ED7B71 /* scadding2.jpg */; };
 		42B3D47F1C8947EF00ED7B71 /* scadding1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4781C8947EF00ED7B71 /* scadding1.jpg */; };
 		42B3D4801C8947EF00ED7B71 /* hf1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4791C8947EF00ED7B71 /* hf1.jpg */; };
@@ -39,6 +40,7 @@
 		422225031C9C64ED007AB661 /* CourtInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtInfoViewController.swift; sourceTree = "<group>"; };
 		423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtDetailsImageTableViewCell.swift; sourceTree = "<group>"; };
 		426945A51C98620E00725E86 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		428B17081CC2C76800290191 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		42B3D4771C8947EF00ED7B71 /* scadding2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scadding2.jpg; path = ../../../../Desktop/scadding2.jpg; sourceTree = "<group>"; };
 		42B3D4781C8947EF00ED7B71 /* scadding1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scadding1.jpg; path = ../../../../Desktop/scadding1.jpg; sourceTree = "<group>"; };
 		42B3D4791C8947EF00ED7B71 /* hf1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hf1.jpg; path = ../../../../Desktop/hf1.jpg; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				42B3D4961C8BD77700ED7B71 /* Util.swift */,
+				428B17081CC2C76800290191 /* LocationService.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				42B3D4911C8B503700ED7B71 /* Court.swift in Sources */,
 				42E4B08F1C9CDBAD00950983 /* AddCourtViewController.swift in Sources */,
 				423282281C947DB10045F670 /* CourtDetailsImageTableViewCell.swift in Sources */,
+				428B17091CC2C76800290191 /* LocationService.swift in Sources */,
 				42B3D4941C8BD0F100ED7B71 /* CourtImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
