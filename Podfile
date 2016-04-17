@@ -2,7 +2,7 @@
  platform :ios, '8.0'
 # Uncomment this line if you're using Swift
  use_frameworks!
- pod 'Parse'
+ pod 'Canvas', '~> 0.1'
  target 'BallCourts' do
 
  end

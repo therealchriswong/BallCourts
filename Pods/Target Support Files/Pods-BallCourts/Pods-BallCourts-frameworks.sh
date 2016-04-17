@@ -84,10 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-BallCourts/Bolts.framework"
-  install_framework "Pods-BallCourts/Parse.framework"
+  install_framework "Pods-BallCourts/Canvas.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-BallCourts/Bolts.framework"
-  install_framework "Pods-BallCourts/Parse.framework"
+  install_framework "Pods-BallCourts/Canvas.framework"
 fi

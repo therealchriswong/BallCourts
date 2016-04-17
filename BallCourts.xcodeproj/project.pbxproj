@@ -12,18 +12,9 @@
 		423282281C947DB10045F670 /* CourtDetailsImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */; };
 		426945A61C98620E00725E86 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 426945A51C98620E00725E86 /* CoreLocation.framework */; };
 		428B17091CC2C76800290191 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B17081CC2C76800290191 /* LocationService.swift */; };
-		42B3D47E1C8947EF00ED7B71 /* scadding2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4771C8947EF00ED7B71 /* scadding2.jpg */; };
-		42B3D47F1C8947EF00ED7B71 /* scadding1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4781C8947EF00ED7B71 /* scadding1.jpg */; };
-		42B3D4801C8947EF00ED7B71 /* hf1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D4791C8947EF00ED7B71 /* hf1.jpg */; };
-		42B3D4811C8947EF00ED7B71 /* hf2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D47A1C8947EF00ED7B71 /* hf2.jpg */; };
-		42B3D4821C8947EF00ED7B71 /* up1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D47B1C8947EF00ED7B71 /* up1.jpg */; };
-		42B3D4831C8947EF00ED7B71 /* up2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D47C1C8947EF00ED7B71 /* up2.jpg */; };
-		42B3D4841C8947EF00ED7B71 /* scadding3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D47D1C8947EF00ED7B71 /* scadding3.jpg */; };
 		42B3D4881C8B46C200ED7B71 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4871C8B46C200ED7B71 /* DataService.swift */; };
 		42B3D48B1C8B47AE00ED7B71 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D48A1C8B47AE00ED7B71 /* Constants.swift */; };
-		42B3D48F1C8B4D9A00ED7B71 /* Canada-Basketball-Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B3D48D1C8B4D9A00ED7B71 /* Canada-Basketball-Header.png */; };
 		42B3D4911C8B503700ED7B71 /* Court.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4901C8B503700ED7B71 /* Court.swift */; };
-		42B3D4941C8BD0F100ED7B71 /* CourtImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4931C8BD0F100ED7B71 /* CourtImage.swift */; };
 		42B3D4971C8BD77700ED7B71 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4961C8BD77700ED7B71 /* Util.swift */; };
 		42B3D49A1C8BDC0000ED7B71 /* CourtTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3D4991C8BDC0000ED7B71 /* CourtTableViewCell.swift */; };
 		42C3D76C1C8514EE00902BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3D76B1C8514EE00902BB7 /* AppDelegate.swift */; };
@@ -41,18 +32,9 @@
 		423282271C947DB10045F670 /* CourtDetailsImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtDetailsImageTableViewCell.swift; sourceTree = "<group>"; };
 		426945A51C98620E00725E86 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		428B17081CC2C76800290191 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
-		42B3D4771C8947EF00ED7B71 /* scadding2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scadding2.jpg; path = ../../../../Desktop/scadding2.jpg; sourceTree = "<group>"; };
-		42B3D4781C8947EF00ED7B71 /* scadding1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scadding1.jpg; path = ../../../../Desktop/scadding1.jpg; sourceTree = "<group>"; };
-		42B3D4791C8947EF00ED7B71 /* hf1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hf1.jpg; path = ../../../../Desktop/hf1.jpg; sourceTree = "<group>"; };
-		42B3D47A1C8947EF00ED7B71 /* hf2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hf2.jpg; path = ../../../../Desktop/hf2.jpg; sourceTree = "<group>"; };
-		42B3D47B1C8947EF00ED7B71 /* up1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = up1.jpg; path = ../../../../Desktop/up1.jpg; sourceTree = "<group>"; };
-		42B3D47C1C8947EF00ED7B71 /* up2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = up2.jpg; path = ../../../../Desktop/up2.jpg; sourceTree = "<group>"; };
-		42B3D47D1C8947EF00ED7B71 /* scadding3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scadding3.jpg; path = ../../../../Desktop/scadding3.jpg; sourceTree = "<group>"; };
 		42B3D4871C8B46C200ED7B71 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		42B3D48A1C8B47AE00ED7B71 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		42B3D48D1C8B4D9A00ED7B71 /* Canada-Basketball-Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Canada-Basketball-Header.png"; path = "../../../../Desktop/Canada-Basketball-Header.png"; sourceTree = "<group>"; };
 		42B3D4901C8B503700ED7B71 /* Court.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Court.swift; sourceTree = "<group>"; };
-		42B3D4931C8BD0F100ED7B71 /* CourtImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtImage.swift; sourceTree = "<group>"; };
 		42B3D4961C8BD77700ED7B71 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		42B3D4991C8BDC0000ED7B71 /* CourtTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourtTableViewCell.swift; sourceTree = "<group>"; };
 		42C3D7681C8514EE00902BB7 /* BallCourts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BallCourts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,21 +113,6 @@
 			name = Court;
 			sourceTree = "<group>";
 		};
-		42B3D4761C8947B100ED7B71 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				42B3D48D1C8B4D9A00ED7B71 /* Canada-Basketball-Header.png */,
-				42B3D4771C8947EF00ED7B71 /* scadding2.jpg */,
-				42B3D4781C8947EF00ED7B71 /* scadding1.jpg */,
-				42B3D4791C8947EF00ED7B71 /* hf1.jpg */,
-				42B3D47A1C8947EF00ED7B71 /* hf2.jpg */,
-				42B3D47B1C8947EF00ED7B71 /* up1.jpg */,
-				42B3D47C1C8947EF00ED7B71 /* up2.jpg */,
-				42B3D47D1C8947EF00ED7B71 /* scadding3.jpg */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
 		42B3D4891C8B46D200ED7B71 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				42B3D4901C8B503700ED7B71 /* Court.swift */,
-				42B3D4931C8BD0F100ED7B71 /* CourtImage.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -204,7 +170,6 @@
 				42B3D4981C8BDB8A00ED7B71 /* Views */,
 				42B3D4951C8BD76800ED7B71 /* Util */,
 				42B3D4891C8B46D200ED7B71 /* Services */,
-				42B3D4761C8947B100ED7B71 /* images */,
 				42C3D76B1C8514EE00902BB7 /* AppDelegate.swift */,
 				4232822A1C9480250045F670 /* Controllers */,
 				42C3D7721C8514EE00902BB7 /* Assets.xcassets */,
@@ -287,17 +252,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B3D4841C8947EF00ED7B71 /* scadding3.jpg in Resources */,
 				42C3D7761C8514EE00902BB7 /* LaunchScreen.storyboard in Resources */,
-				42B3D4831C8947EF00ED7B71 /* up2.jpg in Resources */,
 				42C3D7731C8514EE00902BB7 /* Assets.xcassets in Resources */,
-				42B3D47E1C8947EF00ED7B71 /* scadding2.jpg in Resources */,
 				420CAFD41CAC7BD8009AE525 /* Main.storyboard in Resources */,
-				42B3D48F1C8B4D9A00ED7B71 /* Canada-Basketball-Header.png in Resources */,
-				42B3D47F1C8947EF00ED7B71 /* scadding1.jpg in Resources */,
-				42B3D4801C8947EF00ED7B71 /* hf1.jpg in Resources */,
-				42B3D4811C8947EF00ED7B71 /* hf2.jpg in Resources */,
-				42B3D4821C8947EF00ED7B71 /* up1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +324,6 @@
 				42E4B08F1C9CDBAD00950983 /* AddCourtViewController.swift in Sources */,
 				423282281C947DB10045F670 /* CourtDetailsImageTableViewCell.swift in Sources */,
 				428B17091CC2C76800290191 /* LocationService.swift in Sources */,
-				42B3D4941C8BD0F100ED7B71 /* CourtImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
