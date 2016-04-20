@@ -11,7 +11,7 @@ import CoreLocation
 import Parse
 
 
-class ListCourtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, AddCourtDelegate{
+class ListCourtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, AddCourtDelegate {
     
     @IBOutlet var tableView: UITableView!
     
@@ -28,6 +28,7 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
         
         setupLocationManager()
         setupSearchBar()
+    
     }
     
     // MARK: Setup Helper Methods
@@ -65,11 +66,8 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
-        
-       myTableCell.contentView.layer.borderWidth = 0.1
-        print("\(myTableCell.contentView.layer.borderColor)")
-        
         
         myTableCell.currentLocation = PFGeoPoint(location: locationManager.location)
         
@@ -80,33 +78,33 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
             myTableCell.court = courts[indexPath.row]
 
         }
-        
+                
         return myTableCell
     }
     
-        
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("start")
-        
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
         let cell =  self.tableView.cellForRowAtIndexPath(indexPath)
+
+        UIView.animateWithDuration(0.1, delay: 0, options: [.BeginFromCurrentState, .CurveEaseOut], animations: { () -> Void in
+            cell?.transform = CGAffineTransformMakeScale(0.95, 0.95)
+
+            }) { (completed) -> Void in
+                
+        }
         
-        cell?.transform = CGAffineTransformMakeScale(0.5, 0.5)
-        
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            
-           cell?.transform = CGAffineTransformMakeScale(1, 1)
-            
-        })
-        print("completed")
+        return true
     }
     
-    
-
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell =  self.tableView.cellForRowAtIndexPath(indexPath)
         
-        tableView.cellForRowAtIndexPath(indexPath)
+        UIView.animateWithDuration(0.1, delay: 0, options: [.BeginFromCurrentState, .CurveEaseOut], animations: { () -> Void in
+            cell?.transform = CGAffineTransformIdentity
+            }) { (completed) -> Void in
+                
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
