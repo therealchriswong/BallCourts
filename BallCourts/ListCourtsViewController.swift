@@ -11,33 +11,36 @@ import CoreLocation
 import Parse
 
 
-class ListCourtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, AddCourtDelegate {
+class ListCourtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating, AddCourtDelegate, LocationUpdateProtocol {
     
     @IBOutlet var tableView: UITableView!
     
     var courts = [Court]()
     
-    var locationManager = CLLocationManager()
-    
     var searchController: UISearchController!
     
     var searchResults = [Court]()
     
+    var currentLocation : CLLocation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLocationManager()
+        setupUserLocationManager()
         setupSearchBar()
     
     }
     
     // MARK: Setup Helper Methods
     
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+    func setupUserLocationManager() {
+        
+        let userLocationManager = UserLocationManager.SharedManager
+        
+        userLocationManager.delegate = self
+
+        userLocationManager.startUpdatingLocation()
+
     }
     
     func setupSearchBar() {
@@ -67,19 +70,19 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let myTableCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
+        let courtTableViewCell = tableView.dequeueReusableCellWithIdentifier("court") as! CourtTableViewCell
         
-        myTableCell.currentLocation = PFGeoPoint(location: locationManager.location)
+        courtTableViewCell.currentLocation = PFGeoPoint(location: currentLocation)
         
         if searchController.active {
-            myTableCell.court = searchResults[indexPath.row]
+            courtTableViewCell.court = searchResults[indexPath.row]
         }
         else {
-            myTableCell.court = courts[indexPath.row]
+            courtTableViewCell.court = courts[indexPath.row]
 
         }
                 
-        return myTableCell
+        return courtTableViewCell
     }
     
     
@@ -119,7 +122,7 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
             if let indexPath = tableView.indexPathForCell(cell) {
                 let courtInfoViewController = segue.destinationViewController as! CourtInfoViewController
                 
-                courtInfoViewController.currentLocation = PFGeoPoint(location: locationManager.location)
+                courtInfoViewController.currentLocation = PFGeoPoint(location: currentLocation)
 
                 if searchController.active {
                     courtInfoViewController.court = searchResults[indexPath.row]
@@ -133,29 +136,19 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    // MARK: LocationManagerDelegate Methods
+    // MARK: UserLocationManager Protocol
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            print("Found user location: \(location)")
-            locationManager.stopUpdatingLocation()
-            getCourtByLocation(location)
-        }
+    func locationDidUpdateToLocation(location : CLLocation){
+        currentLocation = location
+        
+        print("Current Location")
+        print("Latitude : \(self.currentLocation.coordinate.latitude)")
+        print("Longitude : \(self.currentLocation.coordinate.longitude)")
+        
+        getCourtByLocation(currentLocation)
+        
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Failed to find user's location: \(error.localizedDescription)")
-        
-        let alert = UIAlertController(title: "Failed to find user's location", message: error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-
     // MARK: Private Helpers
     
     func getCourtByLocation(location: CLLocation) {
@@ -209,16 +202,10 @@ class ListCourtsViewController: UIViewController, UITableViewDataSource, UITable
     func saveNewCourt(court: Court) {
         navigationController?.popViewControllerAnimated(true)
         
-        getCourtByLocation(locationManager.location!)
+        getCourtByLocation(currentLocation)
         if let courtIndex = courts.indexOf({$0 === court}) {
-//            tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: courtIndex, inSection: 0),
-//            atScrollPosition: UITableViewScrollPosition.Middle,
-//            animated: true)
-            
             let indexPath = NSIndexPath(forRow: courtIndex, inSection: 0)
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
-            
         }
 
     }
