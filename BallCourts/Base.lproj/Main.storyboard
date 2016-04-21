@@ -382,6 +382,7 @@
                                                     <constraint firstItem="JXM-fy-AXk" firstAttribute="centerX" secondItem="90y-Pa-3zY" secondAttribute="centerX" id="Q06-pL-NV2"/>
                                                     <constraint firstAttribute="trailing" secondItem="B3L-80-xQP" secondAttribute="trailing" id="R9Y-86-cSf"/>
                                                     <constraint firstItem="B3L-80-xQP" firstAttribute="leading" secondItem="90y-Pa-3zY" secondAttribute="leading" id="gaz-lb-gRL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="rht-PT-wtB" secondAttribute="bottom" id="gqb-d9-QDU"/>
                                                     <constraint firstItem="rht-PT-wtB" firstAttribute="top" secondItem="JXM-fy-AXk" secondAttribute="bottom" constant="8" id="nGJ-mG-bYI"/>
                                                     <constraint firstItem="B3L-80-xQP" firstAttribute="top" secondItem="90y-Pa-3zY" secondAttribute="top" id="vmX-nh-QqZ"/>
                                                     <constraint firstAttribute="bottom" secondItem="B3L-80-xQP" secondAttribute="bottom" id="yoV-91-wVZ"/>
@@ -389,6 +390,7 @@
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="PTi-K8-cgL"/>
+                                                        <exclude reference="gqb-d9-QDU"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -406,7 +408,7 @@
                                                                 </constraints>
                                                                 <string key="text">&lt;Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim &gt;veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.&gt;</string>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                                                             </textView>
                                                         </subviews>
                                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -414,14 +416,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="M2k-su-iK1" userLabel="Location Stack View">
                                                         <rect key="frame" x="0.0" y="40" width="365" height="24"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="emR-Cy-4GM">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="emR-Cy-4GM" userLabel="Location Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="nV6-Z5-rdB"/>
                                                                     <constraint firstAttribute="width" constant="24" id="op6-90-1cB"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="&lt;hoursLabel&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLn-dL-shT">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="&lt;locationLabel&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLn-dL-shT" userLabel="&lt;locationLabel&gt;">
                                                                 <rect key="frame" x="29" y="0.0" width="336" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -465,7 +467,7 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9C9-JK-Mud" userLabel="Phone Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9C9-JK-Mud" userLabel="URL Stack View">
                                                         <rect key="frame" x="0.0" y="127" width="365" height="24"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="url" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-bh-EHs">
@@ -531,17 +533,20 @@
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="address" destination="pLn-dL-shT" id="3vr-Qr-V1S"/>
                         <outlet property="courtImage" destination="B3L-80-xQP" id="0lg-3Q-Xbb"/>
                         <outlet property="courtInformation" destination="rht-PT-wtB" id="xdU-X4-q85"/>
                         <outlet property="courtTitle" destination="JXM-fy-AXk" id="tVd-0I-Mos"/>
-                        <outlet property="hours" destination="pLn-dL-shT" id="6FL-Nq-mBl"/>
-                        <outlet property="hoursIcon" destination="emR-Cy-4GM" id="TL1-5s-HfV"/>
-                        <outlet property="hoursStackView" destination="M2k-su-iK1" id="HFH-jp-6F0"/>
+                        <outlet property="hours" destination="foe-rZ-bID" id="G8t-Bz-KsL"/>
+                        <outlet property="hoursStackView" destination="phM-6k-LcO" id="rar-kc-fEY"/>
+                        <outlet property="locationStackView" destination="M2k-su-iK1" id="th5-qf-aDi"/>
                         <outlet property="map" destination="uag-Em-DPy" id="aY9-4G-tIj"/>
                         <outlet property="phone" destination="L6a-JY-8iK" id="Uuk-zR-rNa"/>
+                        <outlet property="phoneStackView" destination="akg-4L-bkK" id="TfI-nO-pH3"/>
                         <outlet property="summary" destination="pvp-Eg-yj0" id="QL5-J3-HO2"/>
                         <outlet property="summaryHeightConstraint" destination="qri-cZ-Ioi" id="aok-U3-anI"/>
                         <outlet property="url" destination="9Rz-Lc-p5N" id="6va-PN-KKj"/>
+                        <outlet property="urlStackView" destination="9C9-JK-Mud" id="n3k-p8-M23"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Gh-gK-97A" userLabel="First Responder" sceneMemberID="firstResponder"/>
