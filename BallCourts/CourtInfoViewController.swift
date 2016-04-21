@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import MapKit
 
 class CourtInfoViewController: UIViewController {
 
@@ -23,42 +22,109 @@ class CourtInfoViewController: UIViewController {
     @IBOutlet var url: UILabel!
     @IBOutlet var map: UIImageView!
     
-    @IBOutlet var hoursIcon: UIImageView!
     @IBOutlet var hoursStackView: UIStackView!
+    @IBOutlet var locationStackView: UIStackView!
+    @IBOutlet var phoneStackView: UIStackView!
+    @IBOutlet var urlStackView: UIStackView!
+    
     var currentLocation: PFGeoPoint?
     var court: Court?
     
     override func viewDidLoad() {
         
+        setupCourtName()
         
-        self.courtImage.tintColor = UIColor.blackColor()
+        setupCourtInformation()
         
-        self.courtTitle.text = court?.name
-        self.courtInformation.text = "\(court!.players) Players • \(court!.rating!) Rating • \( String(format: "%.2f", (currentLocation?.distanceInKilometersTo(PFGeoPoint(latitude: court!.latitude, longitude: court!.longitude)))!)) KM"
+        setupCourtDescription()
         
-        self.summary.text = court?.summary
+        setupLocation()
+        
+        setupHours()
+        
+        setupPhone()
+        
+        setupURL()
+        
+        setupCourtImage()
+ 
+        setupMapImage()
+        
+    }
+    
+    // MARK: Setup Helper Methods
+    
+    func setupCourtName() {
+        
+        if let courtName = court?.name {
+            self.courtTitle.text = courtName
+        }
+    }
 
-        //self.address.text = court?.address
+    func setupCourtInformation() {
         
-        let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "summaryLabelTapped:")
-        summary.addGestureRecognizer(tapGestureRecognizer)
-        
-        //print("hours status= \(court?.hours)")
-        
-//        if court?.hours == "" {
-//            //hoursStackView.hidden = true
-//            hoursIcon.hidden = true
-//            hours.hidden = true
-//            
-//        }
-//        else {
-//            self.hours.text = court?.hours
-//        }
-//        
-//        //self.hours.text = court?.hours
-//        self.phone.text = court?.phone
-//        self.url.text = court?.url
-        
+        if let numberOfPlayers = court?.players, courtRating = court?.rating, courtLatitude = court?.latitude, courtLongitude = court?.longitude {
+            
+            self.courtInformation.text = "\(numberOfPlayers) Players • \(courtRating) Rating • \( String(format: "%.2f", (currentLocation?.distanceInKilometersTo(PFGeoPoint(latitude: courtLatitude, longitude: courtLongitude)))!)) KM"
+            
+        }
+    }
+    
+    func setupCourtDescription() {
+        if let description = court?.summary {
+            self.summary.text = description
+            
+            let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "summaryLabelTapped:")
+            self.summary.addGestureRecognizer(tapGestureRecognizer)
+        }
+    }
+    
+    func setupLocation() {
+        if court?.address == "" {
+            locationStackView.hidden = true
+        }
+        else {
+            if let address = court?.address {
+                self.address.text = address
+            }
+        }
+    }
+    
+    func setupHours() {
+        if court?.hours == "" {
+            hoursStackView.hidden = true
+        }
+        else {
+            if let hours = court?.hours {
+                self.hours.text = hours
+            }
+        }
+    }
+    
+    func setupPhone() {
+        if court?.phone == "" {
+            phoneStackView.hidden = true
+        }
+        else {
+            if let phone = court?.phone {
+                self.phone.text = phone
+            }
+        }
+    }
+    
+    func setupURL() {
+        if court?.url == "" {
+            urlStackView.hidden = true
+        }
+        else {
+            if let url = court?.url {
+                self.url.text = url
+            }
+        }
+
+    }
+    
+    func setupCourtImage() {
         let query = PFQuery(className: "Court")
         query.whereKey("objectId", equalTo: court!.id)
         query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
@@ -78,38 +144,42 @@ class CourtInfoViewController: UIViewController {
                         print("Error downloading court image: \(error)")
                     }
                 }
-                
-//                let mapImageFile = object!["mapImage"] as! PFFile
-//                
-//                mapImageFile.getDataInBackgroundWithBlock { (imageData, error) -> Void in
-//                    if error == nil {
-//                        if let imageData = imageData {
-//                            let image = UIImage(data: imageData)
-//                            
-//                            self.map.image = image
-//                        }
-//                    }
-//                    else {
-//                        print("Error downloading map image: \(error)")
-//                    }
-//                }
-
-                
             }
             else {
                 print("Error: \(error)")
             }
         })
-        
+
+    }
+    
+    func setupMapImage() {
+        let query = PFQuery(className: "Court")
+        query.whereKey("objectId", equalTo: court!.id)
+        query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
+            if error == nil {
+                let mapImageFile = object!["mapImage"] as! PFFile
+                mapImageFile.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                    if error == nil {
+                        if let imageData = imageData {
+                            let image = UIImage(data: imageData)
+                            self.map.image = image
+                        }
+                    }
+                    else {
+                        print("Error downloading map image: \(error)")
+                    }
+                }
+            }
+            else {
+                print("Error: \(error)")
+            }
+        })
+
     }
     
     func summaryLabelTapped(recognizer: UITapGestureRecognizer) {
-        
-        //summaryHeightConstraint.constant = self.automaticOption = (automaticOptionOfCar ? "Automatic" : "Manual")
-        
+      
         summaryHeightConstraint.constant = summary.contentSize.height
-        
-        print("\(summary.contentSize.height)")
         
         UIView.animateWithDuration(0.3) { () -> Void in
             self.view.layoutIfNeeded()
