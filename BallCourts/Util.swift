@@ -13,9 +13,6 @@ import CoreLocation
 class Util {
     
     static let util = Util()
- 
-    var locationManager = CLLocationManager()
-
     
     func decodeToUIImage(let base64String: String) -> UIImage {
         let decodedData = NSData(base64EncodedString: base64String, options:NSDataBase64DecodingOptions(rawValue: 0))
