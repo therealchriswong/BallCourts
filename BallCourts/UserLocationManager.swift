@@ -13,9 +13,9 @@ protocol LocationUpdateProtocol {
     func locationDidUpdateToLocation(location : CLLocation)
 }
 
-class LocationService: NSObject, CLLocationManagerDelegate {
+class UserLocationManager: NSObject, CLLocationManagerDelegate {
     
-    static let sharedInstance = LocationService()
+    static let SharedManager = UserLocationManager()
     
     private var locationManager = CLLocationManager()
     
@@ -28,23 +28,28 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
+    }
+    
+    func startUpdatingLocation() {
+        print("Starting Location Updates")
         self.locationManager.startUpdatingLocation()
     }
-
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //code
+    func stopUpdatingLocation() {
+        print("Stop Location Updates")
+        self.locationManager.stopUpdatingLocation()
     }
     
-    // Mark: - CLLocationManagerDelegate
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        currentLocation = newLocation
-        //let userInfo : NSDictionary = ["location" : currentLocation!]
+
+    // MARK: CLLocationManagerDelegate
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.last
+        
+        stopUpdatingLocation()
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.delegate.locationDidUpdateToLocation(self.currentLocation!)
-            //NSNotificationCenter.defaultCenter().postNotificationName(kLocationDidChangeNotification, object: self, userInfo: userInfo as [NSObject : AnyObject])
         }
     }
-
 }
