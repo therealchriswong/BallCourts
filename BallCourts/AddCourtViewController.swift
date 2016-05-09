@@ -56,7 +56,7 @@ class AddCourtViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             options.region = self.map.region
             options.size = self.map.frame.size
             options.scale = UIScreen.mainScreen().scale
-            
+
             let snapshotter = MKMapSnapshotter(options: options)
             snapshotter.startWithCompletionHandler() { snapshot, error in
                 

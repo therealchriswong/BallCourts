@@ -28,6 +28,7 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
     }
     
     func startUpdatingLocation() {
@@ -45,7 +46,6 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
-        
         stopUpdatingLocation()
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
